@@ -4,6 +4,11 @@
 Created on Wed Mar  1 14:05:34 2023
 
 @author: chiara
+
+Collections of functions to reorganize in BIDS BrainPTM's single subject data, 
+previously dowloaded from https://brainptm-2021.grand-challenge.org/Dataset/
+and unzipped with the script unzip_folders.py
+
 """
 
 import os
@@ -104,6 +109,13 @@ def save_dseg_bundles_BIDS(sub_id, sub_id_bids, subj_folder_original):
         
 
 def sub_train_BrainPTM_2_BIDS(sub_id = "case_1"):
+    """
+    Move and rename data of train-subject-data of BrainPTM in BIDS-like format. 
+    Takes in input the subject id in BrainPTM format.
+    
+    """
+    print(f"process TRAIN data of  {sub_id}")
+    print(f"Data in BIDS saved in  {path_bids_data}\n")
     #data_train_subj=f"{path_unzipped}/sheba75_data_train/{sub_id}/"   
     subj_folder_dwi_anat_original = f"{path_unzipped}/sheba75_data_train/{sub_id}/"   
     fold_trk_original=f"{path_unzipped}/sheba75_streamlines_train/{sub_id}/"
@@ -126,6 +138,14 @@ def sub_train_BrainPTM_2_BIDS(sub_id = "case_1"):
     
 
 def sub_test_BrainPTM_2_BIDS(sub_id = "case_61"):
+    """
+    Move and rename data of test-subject-data of BrainPTM in BIDS-like format. 
+    Takes in input the subject id in BrainPTM format.
+    
+    """
+    print(f"process TEST data of  {sub_id}")
+    print(f"Data in BIDS saved in  {path_bids_data}\n")
+    
     subj_folder_dwi_anat_original = f"{path_unzipped}/sheba75_data_test/{sub_id}/"   
     sub_id_bids = sub_id_to_BIDS(sub_id)
     
@@ -143,6 +163,9 @@ def sub_test_BrainPTM_2_BIDS(sub_id = "case_61"):
     
 
 if __name__ =="__main__":
+    
+     #to run some tests with default values of sub_id
+     
     sub_train_BrainPTM_2_BIDS()
     sub_test_BrainPTM_2_BIDS()
     
