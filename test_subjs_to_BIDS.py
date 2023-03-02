@@ -7,7 +7,7 @@ Created on Wed Mar  1 18:00:57 2023
 
 Script to rename and move files referred to TEST data of the dataset BrainPTM.
 
-The train data have:
+The test data have:
     - dwi data
     - anat data 
   
