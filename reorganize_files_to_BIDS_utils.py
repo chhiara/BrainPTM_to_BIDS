@@ -9,6 +9,10 @@ Collections of functions to reorganize in BIDS BrainPTM's single subject data,
 previously dowloaded from https://brainptm-2021.grand-challenge.org/Dataset/
 and unzipped with the script unzip_folders.py
 
+NB: in config.py file are indicated useful variable for the functions:
+path_bids_data = path of the BIDS dataset that will be saved
+path_unzipped = path of folders downloaded of BrainPTM2021 and unzipped 
+ 
 """
 
 import os
@@ -19,32 +23,45 @@ sys.path.append(script_dir)
 from config import path_unzipped,path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder
 #%%
 def get_extension(path_file):
+    """
+    Return file extension of a file, even when there are multiple suffixes. Eg: with img.nii.gz, returns ".nii.gz"
+    """
     file_ext="".join(Path(path_file).suffixes)
     return file_ext
 
 def run_bash_cmd(bash_command):
+    """
+    Run bash command with os.sytem and print it
+    """
     print(bash_command, "\n")
     os.system(bash_command)
     
 def sub_id_to_BIDS(sub_id):
+    """
+    Convert the case_id from BrainPTM2021 format to BIDS format
+    eg: taking in input "case_1"  ---> returns --> sub-1
+    """
     sub_id_bids = "sub-"+sub_id.split("_")[1]
     return sub_id_bids
 
 
 def save_dwi_BIDS(sub_id, sub_id_bids, subj_folder_original): 
-    #subj_id_folder = f"{path_unzipped}/sheba75_data_train/{sub_id}/"   
-
-    #sub_id_bids = sub_id_to_BIDS(sub_id)
+    """
+    Save the dwi files of a single case_subject of BrainPRM2021 (Diffusion.nii.gz, Diffusion.bvals, Diffusion.bvecs )
+    in BIDS format. The target directory is indicated by the variable path_bids_data defined in config.py  
+    """
+    #original paths of the BrainPTM files
     path_dwi_original=f"{subj_folder_original}/Diffusion.nii.gz"
     path_bval_original=f"{subj_folder_original}/Diffusion.bvals"
     path_bvec_original=f"{subj_folder_original}/Diffusion.bvecs"
     paths_original_dwi= [path_dwi_original, path_bval_original, path_bvec_original]
     
+    #define and create the destination folder to save the files in BIDS
     fold_dwi_bids=f"{path_bids_data}/{sub_id_bids}/dwi/"
     if not os.path.exists(fold_dwi_bids):
         os.makedirs(fold_dwi_bids)
     
-
+    #copy the files in the new destion respecting the BIDS format
     for path_original_dwi in paths_original_dwi:
         file_ext=get_extension(path_original_dwi)
         path_to_bids_dwi=f"{fold_dwi_bids}/{sub_id_bids}_dwi{file_ext}"
@@ -53,20 +70,20 @@ def save_dwi_BIDS(sub_id, sub_id_bids, subj_folder_original):
         
         
 def save_anat_BIDS( sub_id, sub_id_bids, subj_folder_original):
-    #subj_id_folder = f"{path_unzipped}/sheba75_data_train/{sub_id}/"   
-    #sub_id_bids = sub_id_to_BIDS(sub_id)
-    
+    """
+    Save the anat files of a single case_subject of BrainPRM2021 (T1.nii.gz, brain_mask.nii.gz)
+    in BIDS format. The target directory is indicated by the variable path_bids_data defined in config.py  
+    """
+    #original paths of the BrainPTM files
     path_t1_original = f"{subj_folder_original}/T1.nii.gz"
     path_brain_mask_original = f"{subj_folder_original}/brain_mask.nii.gz"    
     
+    #define and create the destination folder to save the files in BIDS
     fold_anat_bids=f"{path_bids_data}/{sub_id_bids}/anat/"
     if not os.path.exists(fold_anat_bids):
         os.makedirs(fold_anat_bids)
-    
-    path_t1_original = f"{subj_folder_original}/T1.nii.gz"
-    path_brain_mask_original = f"{subj_folder_original}/brain_mask.nii.gz"    
 
-    
+    #copy the files in the new destion respecting the BIDS format
     path_t1_bids= f"{fold_anat_bids}/{sub_id_bids}_T1w" + get_extension(path_t1_original)
     path_brain_mask_bids= f"{fold_anat_bids}/{sub_id_bids}_brain-mask" + get_extension(path_brain_mask_original)
 
@@ -78,6 +95,10 @@ def save_anat_BIDS( sub_id, sub_id_bids, subj_folder_original):
 
 
 def save_tractography_BIDS(sub_id, sub_id_bids, subj_folder_original):
+    """
+    Save the tractography files of the segmented bundles of a single case_subject of BrainPRM2021 (OR_left.trk, OR_right.trk,
+    CST_left.trk, CST_right.trk) in BIDS format. This function is used only for the train subjects that has the ground truth segmentation of the bundles.
+    """
     paths_trks_original= [f"{subj_folder_original}/{file}" for file in os.listdir(subj_folder_original)]
     fold_trk_bids=f"{path_bids_data}/derivatives/{tractography_bundle_folder}/{sub_id_bids}/"
     if not os.path.exists(fold_trk_bids):
@@ -92,6 +113,10 @@ def save_tractography_BIDS(sub_id, sub_id_bids, subj_folder_original):
 
 
 def save_dseg_bundles_BIDS(sub_id, sub_id_bids, subj_folder_original):
+    """
+    Save the binary segmentation files of the segmented bundles of a single case_subject of BrainPRM2021 (OR_left.nii.gz, OR_right.nii.gz,
+    CST_left.nii.gz, CST_right.nii.gz) in BIDS format. This function is used only for the train subjects that has the ground truth segmentation of the bundles.
+    """
     paths_bundle_original= [f"{subj_folder_original}/{file}" for file in os.listdir(subj_folder_original)]
     fold_bundle_masks_bids=f"{path_bids_data}/derivatives/{bin_mask_bundle_folder}/{sub_id_bids}/"
 
@@ -116,8 +141,7 @@ def sub_train_BrainPTM_2_BIDS(sub_id = "case_1"):
     """
     print(f"process TRAIN data of  {sub_id}")
     print(f"Data in BIDS saved in  {path_bids_data}\n")
-    #data_train_subj=f"{path_unzipped}/sheba75_data_train/{sub_id}/"   
-    subj_folder_dwi_anat_original = f"{path_unzipped}/sheba75_data_train/{sub_id}/"   
+    fold_dwi_anat_original = f"{path_unzipped}/sheba75_data_train/{sub_id}/"   
     fold_trk_original=f"{path_unzipped}/sheba75_streamlines_train/{sub_id}/"
     fold_bundle_mask_original=f"{path_unzipped}/sheba75_tracts_train/{sub_id}/"
 
@@ -125,10 +149,10 @@ def sub_train_BrainPTM_2_BIDS(sub_id = "case_1"):
     
     #---1. rename and move dwi files---------------------------------
 
-    save_dwi_BIDS(sub_id, sub_id_bids, subj_folder_dwi_anat_original)
+    save_dwi_BIDS(sub_id, sub_id_bids, fold_dwi_anat_original)
     
      #---2. rename and save anat files--------------------------------
-    save_anat_BIDS(sub_id, sub_id_bids, subj_folder_dwi_anat_original)
+    save_anat_BIDS(sub_id, sub_id_bids, fold_dwi_anat_original)
             
     #---3.rename and save tractography files
     save_tractography_BIDS(sub_id, sub_id_bids, fold_trk_original)
