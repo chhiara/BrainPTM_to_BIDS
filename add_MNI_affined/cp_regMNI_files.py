@@ -5,7 +5,15 @@ Created on Thu Mar  2 18:10:35 2023
 
 @author: chiara
 
-Script to copy in BIDS folder the files registered with affine in MNI to BIDS folder destination
+Script to copy in BIDS folder the files registered with affine in MNI to BIDS folder destination.
+Those files were previously computed and were saved at : 
+    /nilab-qnap/datasets/BrainPTM/<group>/<case_id>/reg_FA_vs_FMRIB58_FA_1mm/
+    
+    where <group> is either "train" or "test"
+          <case-id> is the case-id in BrainPTM format
+
+TODO: clarify if it a problem for successive analysis have names more BIDS compliant and not analogous to APSS_Bundles_Nilab
+    
 """
 import os
 import sys
@@ -29,7 +37,7 @@ def  cp_reg_files_to_bids(case_id="case_1", group_train=True):
     
    
     """
-    #names with the files equal to APSS_Nilab
+    #--------------- files names with the files analogue to APSS_Nilab ------------------
     dict_names_correspondance= {"brain_mask_reg_FMRIB58_FA_1mm.nii.gz":f"{subj_id_bids}__affined_brain_mask.nii.gz",
                                 "FA_reg_FMRIB58_FA_1mm.nii.gz0GenericAffine.mat": "0GenericAffine.mat",
                                 "Diffusion_b0_brain_mask_reg_FMRIB58_FA_1mm.nii.gz": f"{subj_id_bids}__affined_brain_maskb0.nii.gz",
@@ -40,11 +48,11 @@ def  cp_reg_files_to_bids(case_id="case_1", group_train=True):
         for t in tracts:
             #add the segmentation file names if the sbj is in group train
             dict_names_correspondance[f"{t}_reg_FMRIB58_FA_1mm.nii.gz"] = f"{subj_id_bids}_{t}__affined_binary_masks.nii.gz"
-          
+    #----------------------------------------------------------------------------------      
     """
     
     
-    #names not eqaul to APSS_Nilab, but more BIDS compliant
+    #-------------files names not eqaul to APSS_Nilab, but more BIDS compliant ---------------
     dict_names_correspondance= {"brain_mask_reg_FMRIB58_FA_1mm.nii.gz":f"{subj_id_bids}_brain-mask_affined-mni.nii.gz",
                                 "FA_reg_FMRIB58_FA_1mm.nii.gz0GenericAffine.mat": f"{subj_id_bids}_0GenericAffine_affined-mni.mat",
                                 "Diffusion_b0_brain_mask_reg_FMRIB58_FA_1mm.nii.gz": f"{subj_id_bids}_brain-mask-b0_affined-mni.nii.gz",
@@ -57,7 +65,7 @@ def  cp_reg_files_to_bids(case_id="case_1", group_train=True):
             #add the segmentation file names if the sbj is in group train
             dict_names_correspondance[f"{t}_reg_FMRIB58_FA_1mm.nii.gz"] = f"{subj_id_bids}_{t_new}_affined-mni.nii.gz"
           
-    
+    #-----------------------------------------------------------------------------------------
     
     
     for file_nm_original, file_nm_new in dict_names_correspondance.items():
@@ -72,18 +80,26 @@ def  cp_reg_files_to_bids(case_id="case_1", group_train=True):
             print(f"Alert: {path_to_orig_file} does not exists")
 
 
+
+
+
 if __name__ =="__main__":
     
-    cp_reg_files_to_bids()
+    #cp_reg_files_to_bids()
     
-    """    
-    dir_reg_MNI_pattern="/nilab-qnap/datasets/BrainPTM/GROUP/CASEID/reg_FA_vs_FMRIB58_FA_1mm/"
+    #----1 retrieve MNI registered data for test cases and copy to BIDS dataset------------
+    #retrieve case-id if GROUP=test
+    
     subj_folder_dwi_anat_original_test = f"{path_unzipped}/sheba75_data_test/"
-    
-    
-    #possible values for GROUP
-    groups=["train", "test"]
-    
-    #possible values for CASEID if GROUP=train
     case_ids_original_test = [case_id_original for case_id_original in os.listdir(subj_folder_dwi_anat_original_test)]
-    """
+    for id_test in case_ids_original_test:
+        cp_reg_files_to_bids(case_id=id_test, group_train=False)
+        
+        
+    #----2 retrieve MNI registered data for train cases and copy to BIDS dataset------------
+    
+    subj_folder_dwi_anat_original_train = f"{path_unzipped}/sheba75_data_train/"
+    case_ids_original_train = [case_id_original for case_id_original in os.listdir(subj_folder_dwi_anat_original_train)]
+    for id_test in case_ids_original_train:
+        cp_reg_files_to_bids(case_id=id_test, group_train=False)
+        
