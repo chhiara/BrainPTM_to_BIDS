@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #1. unzip dowloaded folders
 python unzip_folders.py
 
@@ -7,7 +8,7 @@ python unzip_folders.py
 python train_subjs_to_BIDS.py
 
 #3.  reoriganize and rename test subjectsunzipped  data
-python train_subjs_to_BIDS.py
+python test_subjs_to_BIDS.py
 
 #4. create participants.tsv and participants.json that indicate if a subject is the group train or test
 python annotate_participants.py
@@ -19,4 +20,6 @@ python save_readme_BrainPTM_bids.py
 #-  parent directory f"{path_bids_data}/ to describe row data
 #-  directories of derivatives tractograhy and binary masks to describe each derivative data
 python write_save_description_dataset.py
+
+ 
 
