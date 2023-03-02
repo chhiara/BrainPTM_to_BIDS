@@ -19,6 +19,9 @@ path_bids_data = "/home/chiara/datasets/BrainPTM_BIDS/"
 #- the trk files referred to each tract
 tractography_bundle_folder="tractography"
 
+#-#- the trk files referred to each tract with affine coherent to anat 
+tractography_bundle_folder_aff="tractography_with_affine"
+
 #- the binary files referred to each tract
 bin_mask_bundle_folder="binary_masks"
 
