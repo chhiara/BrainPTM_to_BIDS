@@ -37,4 +37,3 @@ case_ids_original = [case_id_original for case_id_original in os.listdir(subj_fo
 for case_id in case_ids_original:
     sub_train_BrainPTM_2_BIDS(case_id)
 
-
