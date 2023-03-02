@@ -50,6 +50,7 @@ dict_json={"group":
 with open(path_participants_json, "w") as outfile:
     json.dump(dict_json, outfile)
 
+print(f"saved to file:  {path_participants_json}\n")
 
 
 

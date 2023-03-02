@@ -26,3 +26,5 @@ path_readme_bids = f"{path_bids_data}/README.md"
 
 bash_command = f"cp {path_readme_source} {path_readme_bids}"
 run_bash_cmd(bash_command)
+
+print(f"Saved to file: {bash_command}")

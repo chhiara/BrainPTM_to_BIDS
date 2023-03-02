@@ -45,6 +45,7 @@ dict_data_row={"Name": "BrainPTM2021",
 
 with open(path_data_description_json, "w") as outfile:
     json.dump(dict_data_row, outfile)
+print(f"saved to file:  {path_data_description_json}")
     
     
     
@@ -78,7 +79,9 @@ dict_data_tractog["GeneratedBy"]=[ {
 
 with open(path_data_description_tractogr_json, "w") as outfile:
     json.dump(dict_data_tractog, outfile)
-    
+
+print(f"saved to file:  {path_data_description_tractogr_json}")
+
     
 #------------------------------------------------------------------------------------
 #----descriptive json of the derivative data of the bundle segmentation's binary masks
@@ -100,4 +103,4 @@ dict_data_bin_bundles["GeneratedBy"].append( {
 with open(path_data_description_bin_masks_json, "w") as outfile:
     json.dump(dict_data_bin_bundles, outfile)
     
-    
+print(f"saved to file:  {path_data_description_bin_masks_json}\n")
