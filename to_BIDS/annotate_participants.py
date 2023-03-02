@@ -38,7 +38,7 @@ subj_folder_dwi_anat_original_test = f"{path_unzipped}/sheba75_data_test/"
 case_ids_test_bids = [sub_id_to_BIDS(case_id_original) for case_id_original in os.listdir(subj_folder_dwi_anat_original_test)]
 
 dict_data={"participant_id":case_ids_train_bids + case_ids_test_bids,
-            "group:": ["train"]*len(case_ids_train_bids) + ["test"]*len(case_ids_test_bids) }
+            "group": ["train"]*len(case_ids_train_bids) + ["test"]*len(case_ids_test_bids) }
 
 
 df_participants=pd.DataFrame(dict_data)
