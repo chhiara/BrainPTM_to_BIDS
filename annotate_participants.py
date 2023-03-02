@@ -7,8 +7,8 @@ Created on Wed Mar  2 10:10:51 2023
 
 Script to save the file participants.tsv and the corresponding participants.json.
 These files collects informations about subjects. In tsv file There is only a descriptive column "group"
-that indicate if a subject is in train set (and was provided of bundles' segmentations) or 
-in test (and was not provided of bundles' segmentations).
+that indicate if a subject is in train set (so it was provided of bundles' segmentations) or 
+in test (so it was not provided of bundles' segmentations).
 
 """
 #%%
