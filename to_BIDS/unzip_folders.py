@@ -10,8 +10,14 @@ downloaded from https://brainptm-2021.grand-challenge.org/Dataset/
 """
 import os
 import sys
+from pathlib import Path
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(script_dir)
+
+lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
+sys.path.append(lib_parent_dir)
+
 from config import path_zipped, path_unzipped
 #%%
 

@@ -23,8 +23,13 @@ and unzipped with the script unzip_folders.py
 import os
 import sys
 from pathlib import Path
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(script_dir)
+
+lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
+sys.path.append(lib_parent_dir)
+
 
 from config import path_bids_data, path_unzipped
 from reorganize_files_to_BIDS_utils import sub_train_BrainPTM_2_BIDS

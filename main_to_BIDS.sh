@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+cd to_BIDS
 #1. unzip dowloaded folders
 python unzip_folders.py
 

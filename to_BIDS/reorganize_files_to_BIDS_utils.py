@@ -18,8 +18,13 @@ path_unzipped = path of folders downloaded of BrainPTM2021 and unzipped
 import os
 import sys
 from pathlib import Path
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(script_dir)
+
+lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
+sys.path.append(lib_parent_dir)
+
 from config import path_unzipped,path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder
 #%%
 def get_extension(path_file):

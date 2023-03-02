@@ -16,9 +16,16 @@ import pandas as pd
 import os
 import sys
 import json
+from pathlib import Path
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(script_dir)
-from config import path_unzipped,path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder
+
+lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
+sys.path.append(lib_parent_dir)
+
+
+from config import path_unzipped, path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder
 from reorganize_files_to_BIDS_utils import sub_id_to_BIDS
 #%%
 path_participants_tsv=f"{path_bids_data}/participants.tsv"
