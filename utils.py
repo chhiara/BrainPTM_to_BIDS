@@ -29,6 +29,10 @@ def sub_id_to_BIDS(sub_id):
     Convert the case_id from BrainPTM2021 format to BIDS format
     eg: taking in input "case_1"  ---> returns --> sub-1
     """
-    sub_id_bids = "sub-"+sub_id.split("_")[1]
+    num_id=sub_id.split("_")[1]
+    if len(num_id)==1:
+        num_id=f"0{num_id}"
+
+    sub_id_bids = f"sub-{num_id}"
     return sub_id_bids
 
