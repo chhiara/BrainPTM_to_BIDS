@@ -15,7 +15,7 @@ lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
 sys.path.append(lib_parent_dir)
 
 from config import path_bids_data,path_unzipped 
-from reorganize_files_to_BIDS_utils import sub_id_to_BIDS, run_bash_cmd
+from utils import sub_id_to_BIDS, run_bash_cmd
 #%%
 
 dir_reg_MNI_sbj_origin_pattern=f"/nilab-qnap/datasets/BrainPTM/train/SUBJ-ID/reg_FA_vs_FMRIB58_FA_1mm/"
