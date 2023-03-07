@@ -23,7 +23,7 @@ lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
 sys.path.append(lib_parent_dir)
 
 from config import path_bids_data
-from reorganize_files_to_BIDS_utils import run_bash_cmd
+from utils import run_bash_cmd
 #%%
 
 path_readme_source = f"{script_dir}/readme_BrainPTM_BIDS.md"

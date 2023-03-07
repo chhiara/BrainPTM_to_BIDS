@@ -26,7 +26,8 @@ sys.path.append(lib_parent_dir)
 
 
 from config import path_unzipped, path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder
-from reorganize_files_to_BIDS_utils import sub_id_to_BIDS
+from utils import sub_id_to_BIDS, run_bash_cmd
+
 #%%
 path_participants_tsv=f"{path_bids_data}/participants.tsv"
 path_participants_json=f"{path_bids_data}/participants.json"
@@ -44,6 +45,8 @@ dict_data={"participant_id":case_ids_train_bids + case_ids_test_bids,
 df_participants=pd.DataFrame(dict_data)
 
 df_participants.to_csv(path_participants_tsv, sep='\t', index=False)
+print(f"saved to file:  {path_participants_tsv}\n")
+
 #%%
 
 dict_json={"group": 
