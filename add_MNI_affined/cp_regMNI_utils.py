@@ -18,21 +18,17 @@ from config import path_bids_data,path_unzipped
 from utils import sub_id_to_BIDS, run_bash_cmd
 #%%
 
-dir_reg_MNI_sbj_origin_pattern=f"/nilab-qnap/datasets/BrainPTM/train/SUBJ-ID/reg_FA_vs_FMRIB58_FA_1mm/"
 
-def get_dir_sbj_regMNI_origin(subj_id_bids):
-    return dir_reg_MNI_sbj_origin_pattern.replace("SUBJ-ID", subj_id_bids)
 
-def cp_regMNI_files(dict_names_correspondance, subj_id_bids):
+
+def cp_regMNI_files(dict_names_correspondance, fold_origin, subj_id_bids, case_id):
     
     fold_to_destination =f"{path_bids_data}/derivatives/register_to_MNI_affine/{subj_id_bids}/"
     if not os.path.exists(fold_to_destination):
         os.makedirs(fold_to_destination)
         
-    dir_reg_MNI_sbj_origin=get_dir_sbj_regMNI_origin(subj_id_bids)
-    
     for file_nm_original, file_nm_new in dict_names_correspondance.items():
-        path_to_orig_file = f"{dir_reg_MNI_sbj_origin}/{file_nm_original}"
+        path_to_orig_file = f"{fold_origin}/{file_nm_original}"
         path_to_new_file =  f"{fold_to_destination}/{file_nm_new}"
         
         if os.path.exists(path_to_orig_file):
@@ -49,7 +45,7 @@ def names_regMNI_tracts_train(subj_id_bids="sub-1"):
     for t in tracts:
         t_new=t.replace("_", "-")
         #add the segmentation file names if the sbj is in group train
-        tracts_names_correspondance[f"{t}_reg_FMRIB58_FA_1mm.nii.gz"] = f"{subj_id_bids}_{t_new}_affined-mni.nii.gz"
+        tracts_names_correspondance[f"{t}_reg_FMRIB58_FA_1mm.nii.gz"] = f"{subj_id_bids}__{t_new}__affined-mni.nii.gz"
     return(tracts_names_correspondance)
 
 def names_regMNI_traintest(subj_id_bids="sub-1"):
@@ -74,9 +70,11 @@ def  cp_reg_files_to_bids_train(case_id="case_1"):
     dict_names_correspondance = names_regMNI_traintest(subj_id_bids)
     tracts_names_correspondance = names_regMNI_tracts_train(subj_id_bids)
     dict_names_correspondance.update(tracts_names_correspondance)
+    fold_origin=f"/nilab-qnap/datasets/BrainPTM/train/{case_id}/reg_FA_vs_FMRIB58_FA_1mm/"
+
     #-----------------------------------------------------------------------------------------
     #cp the files from orgin to destination
-    cp_regMNI_files(dict_names_correspondance, subj_id_bids)
+    cp_regMNI_files(dict_names_correspondance, fold_origin, subj_id_bids, case_id)
     
             
 def  cp_reg_files_to_bids_test(case_id="case_61"):
@@ -86,9 +84,10 @@ def  cp_reg_files_to_bids_test(case_id="case_61"):
     #define name source --> destination
     #in this dictionary the keys are the file-names in the original location, while the values are the new file-names in the destion BIDS folder
     dict_names_correspondance = names_regMNI_traintest(subj_id_bids)
-    
+    fold_origin=f"/nilab-qnap/datasets/BrainPTM/test/{case_id}/reg_FA_vs_FMRIB58_FA_1mm/"
+
     #-----------------------------------------------------------------------------------------
-    cp_regMNI_files(dict_names_correspondance, subj_id_bids)
+    cp_regMNI_files(dict_names_correspondance, fold_origin, subj_id_bids, case_id)
     
 
 
