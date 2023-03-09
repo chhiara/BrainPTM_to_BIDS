@@ -1,18 +1,18 @@
 # README
 
-The BrainPTM2021 dataset is provided by the platform https://grand-challenge.org/ , and can be downloaded from https://brainptm-2021.grand-challenge.org/ .
-This dataset  is not originally in BIDS format. After having downloaded the zip folders from https://brainptm-2021.grand-challenge.org/ can be converted in BIDS format using the code in xxxxxx.
+The BrainPTM2021 dataset is provided by the platform https://grand-challenge.org/ and can be downloaded from https://brainptm-2021.grand-challenge.org/.
+This dataset is not originally in BIDS format. After having downloaded the zip folders from https://brainptm-2021.grand-challenge.org/ can be converted into BIDS format using the code in xxxxxx.
 
-The data are inteded to be downloaded to participate to a challenge. 
-The challenge consints in authomatically segmenting with the highest performance as possible the white matter tracts Corticospinal tract left and right and
-Optic Radiation left and right in a group of glioma patients. The performance to rank the particiapnts in the challenge is evaluated with the Dice Score Coefficient.
+The data are intended to be downloaded to participate in a challenge. 
+The challenge consists in automatically segmenting with the highest performance possible the white matter tracts Corticospinal tract left and right and
+Optic Radiation left and right in a group of glioma patients. The performance to rank the participants in the challenge is evaluated with the Dice Score Coefficient.
 
-The dataset is composed of data concerning 75 glioma patients. The glioma patients can belong to two exclusive groups:
+The dataset is composed of data concerning 75 glioma patients. Glioma patients can belong to two exclusive groups:
 
-* the train set: subjects' data beloging to this group should be used to train an authomatic algorithm to segment the white matter tracts. For this subjects the ground truth segmentation of the tracts is provided, as tractography and binary masks.
+* the train set: subjects' data belonging to this group should be used to train an automatic algorithm to segment the white matter tracts. For these subjects, the ground truth segmentation of the tracts is provided, as tractography and binary masks.
 
-* the test set: subjects's data beloging to this group should be used for inference by participants to the challenge, i.e. for segmenting the tracts Corticospinal tract and
-Optic Radiation left and right. The predicted segmentations should be submitted to the challenge to participate. For this reason, for this subjects the ground truth segmentation of the tracts is not provided.
+* the test set: subjects' data beloging to this group should be used for inference by participants to the challenge, i.e. for segmenting the tracts Corticospinal tract and
+Optic Radiation left and right. The predicted segmentations should be submitted to the challenge to participate. For this reason, for this subjects, the ground truth segmentation of the tracts is not provided.
 
 
 
@@ -55,12 +55,12 @@ For any questions about the data on the [website](https://brainptm-2021.grand-ch
 
 * Ilya Nelkenbaum, Computational Imaging Lab (CILAB), Tel-Hashomer, Ramat Gan, Israel; email: ilya@nelkenbaum.com
 * Noa Barzilay, Computational Imaging Lab (CILAB), Tel-Hashomer, Ramat Gan, Israel; email: noabarzilay11@gmail.com
-* Arnaldo Mayer, Head of Computational Imaging Lab (CILAB), Tel-Hashomer, Ramat Gan, Israel; email : arnmayer@gmail.com"[2]
+* Arnaldo Mayer, Head of Computational Imaging Lab (CILAB), Tel-Hashomer, Ramat Gan, Israel; email : arnmayer@gmail.com[2]
   
 
 ### Practical information to access the data
 The data can be downloaded from https://brainptm-2021.grand-challenge.org/, after joining the challenge.
-The zip folders dowloaded from https://brainptm-2021.grand-challenge.org/ can be converted in BIDS format using code in xxxx.
+The zip folders downloaded from https://brainptm-2021.grand-challenge.org/ can be converted in BIDS format using code in xxxx.
 
  
 
@@ -71,12 +71,12 @@ The zip folders dowloaded from https://brainptm-2021.grand-challenge.org/ can be
 
 ### Subjects
 
-"The dataset used for the experiments consists of image data from 75 patients referred for brain tumor removal (..). Patient diagnoses include oligodendrogliomas, astrocytomas, glioblastomas and cavernomas, on first occurrence or in a post-surgical recurrence. The patients underwent pre-surgical DTI mapping of the motor, language, visual or a combination of those tracts, depending on their proximity to the lesion. According to the neuroradiologist’s estimation, the tumor volumes ranged from 4 (cavernoma) to 60 cm3 (glioblastoma multiforme). Also, different levels of edema are present around the dataset tumors."[1]
+"The dataset used for the experiments consists of image data from 75 patients referred for brain tumor removal (..). Patient diagnoses include oligodendrogliomas, astrocytomas, glioblastomas and cavernomas, on first occurrence or in a post-surgical recurrence. The patients underwent pre-surgical DTI mapping of the motor, language, visual, or a combination of those tracts, depending on their proximity to the lesion. According to the neuroradiologist’s estimation, the tumor volumes ranged from 4 (cavernoma) to 60 cm3 (glioblastoma multiforme). Also, different levels of edema are present around the dataset tumors."[1]
 
 
 
 ### Apparatus
-"The dataset comprise 75 clinical cases with T1w Structural and Diffusion Weighted (DW) modalities.
+"The dataset comprises 75 clinical cases with T1w Structural and Diffusion Weighted (DW) modalities.
 The scans were acquired on a 3T Signa machine (GE healthcare, Milwaukee). The DW protocol had 64
 gradient directions at B0 = 1000 and one scan at B0 = 0. T1w with no contrast injection was acquired at
 1x1x1 mm^3 resolution and the DW with 1x1x2.6 mm^3. DW was processed with MrDiffusion toolbox [3]
@@ -94,7 +94,7 @@ algorithms evaluation, so only the input cases scans are provided (T1w and DW)."
 
 ### Experimental location
 
-The data were acquired in Sheba Medical Center at Tel HaShomer, Israel.
+The data were acquired at Sheba Medical Center in Tel HaShomer, Israel.
 
 
 ### Missing data
