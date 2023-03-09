@@ -61,7 +61,7 @@ def names_regMNI_traintest(subj_id_bids="sub-1"):
                                 "FA_reg_FMRIB58_FA_1mm.nii.gz0GenericAffine.mat": f"{subj_id_bids}_space-MNI152FA_0GenericAffine.mat",
                                 "Diffusion_b0_brain_mask_reg_FMRIB58_FA_1mm.nii.gz": f"{subj_id_bids}_space-MNI152FA_brain-mask-b0.nii.gz",
                                 "FA_reg_FMRIB58_FA_1mm.nii.gzInverseWarped.nii.gz": f"{subj_id_bids}_space-individual_FA-MNI.nii.gz",
-                                "FA_reg_FMRIB58_FA_1mm.nii.gzWarped.nii.gz": f"{subj_id_bids}_space-MNI152FA_FA.gz"}
+                                "FA_reg_FMRIB58_FA_1mm.nii.gzWarped.nii.gz": f"{subj_id_bids}_space-MNI152FA_FA.nii.gz"}
 
     #-------------files names equal to APSS_Nilab-------------
 
