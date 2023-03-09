@@ -51,9 +51,9 @@ print(f"saved to file:  {path_participants_tsv}\n")
 
 dict_json={"group": 
         {"LongName": "The group (train, or test) to which each participant belongs.",
-        "Description": "Indicate if a subject is in the train set or the test set. The subjects in the train set are intended to train an algorithm to segment the bundles; the subject in the test set are intended to be used only for inference.", 
-        "Levels": {"train": "The subject is in the train set, so the bundle's segmentations for that subject are provided to train the algorithm",
-                 "test": "The subject is in the test set, so the bundle's segmentations for that subject are NOT provided."
+        "Description": "Indicate if a subject is in the train set or the test set. The subjects in the train set are intended to train an algorithm to segment the bundles; the subjects in the test set are intended to be used only for inference.", 
+        "Levels": {"train": "The subject is in the train set, so the bundles' segmentations for that subject are provided to train the algorithm",
+                 "test": "The subject is in the test set, so the bundles' segmentations for that subject are NOT provided."
                  }
         }}
 
