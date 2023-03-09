@@ -19,7 +19,7 @@ from config import path_bids_data, tractography_bundle_folder, tractography_bund
 from utils import run_bash_cmd, get_extension
 #%%
 
-def add_affine_trk(bids_subj_id="sub-1"):
+def add_affine_trk(bids_subj_id="sub-01"):
     fold_trk=f"{path_bids_data}/derivatives/{tractography_bundle_folder}/{bids_subj_id}/"
     fold_trk_aff=f"{path_bids_data}/derivatives/{tractography_bundle_folder_aff}/{bids_subj_id}/"
     paths_trks = [f"{fold_trk}/{trk_file}" for trk_file in os.listdir(fold_trk)]

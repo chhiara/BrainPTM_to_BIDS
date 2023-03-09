@@ -14,6 +14,11 @@ import pandas as pd
 script_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(script_dir)
 
+
+lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
+sys.path.append(lib_parent_dir)
+
+
 from config import path_bids_data
 from add_affine_trk_single_sbj import add_affine_trk
 #%%
