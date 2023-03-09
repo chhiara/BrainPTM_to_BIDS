@@ -23,7 +23,7 @@ from utils import sub_id_to_BIDS, run_bash_cmd
 
 def cp_regMNI_files(dict_names_correspondance, fold_origin, subj_id_bids, case_id):
     
-    fold_to_destination =f"{path_bids_data}/derivatives/register_to_MNI_affine/{subj_id_bids}/"
+    fold_to_destination =f"{path_bids_data}/derivatives/register_to_MNI_affine_FA/{subj_id_bids}/"
     if not os.path.exists(fold_to_destination):
         os.makedirs(fold_to_destination)
         
@@ -43,15 +43,13 @@ def names_regMNI_tracts_train(subj_id_bids="sub-1"):
     tracts=["CST_left", "CST_right", "OR_left", "OR_right"]
     tracts_names_correspondance=dict()
     for t in tracts:
-        if "left" in t:
-            t_new=t.replace("_left", "_L")
-        else:
-            t_new=t.replace("_right", "_R")
+      
+        t_new=t.replace("_", "-")
 
         #add the segmentation file names if the sbj is in group train
         #tracts_names_correspondance[f"{t}_reg_FMRIB58_FA_1mm.nii.gz"] = f"{subj_id_bids}__{t_new}__affined-mni.nii.gz"
 
-        tracts_names_correspondance[f"{t}_reg_FMRIB58_FA_1mm.nii.gz"] = f"{subj_id_bids}__{t_new}__affined_binary_mask.nii.gz"
+        tracts_names_correspondance[f"{t}_reg_FMRIB58_FA_1mm.nii.gz"] = f"{subj_id_bids}_{t_new}_space-MNI152FA_dseg.nii.gz"
     return(tracts_names_correspondance)
 
 def names_regMNI_traintest(subj_id_bids="sub-1"):
@@ -59,20 +57,19 @@ def names_regMNI_traintest(subj_id_bids="sub-1"):
     #in this dictionary the keys are the file-names in the original location, while the values are the new file-names in the destion BIDS folder
     
     #-------------files names not eqaul to APSS_Nilab, but more BIDS compliant (even though not completely BIDS compliant)-------------
-
-    # dict_names_correspondance= {"brain_mask_reg_FMRIB58_FA_1mm.nii.gz":f"{subj_id_bids}__brain-mask__affined-mni.nii.gz",
-    #                             "FA_reg_FMRIB58_FA_1mm.nii.gz0GenericAffine.mat": f"{subj_id_bids}__0GenericAffine__affined-mni.mat",
-    #                             "Diffusion_b0_brain_mask_reg_FMRIB58_FA_1mm.nii.gz": f"{subj_id_bids}__brain-mask-b0__affined-mni.nii.gz",
-    #                             "FA_reg_FMRIB58_FA_1mm.nii.gzInverseWarped.nii.gz": f"{subj_id_bids}__FA__inv-affined-mni.nii.gz",
-    #                             "FA_reg_FMRIB58_FA_1mm.nii.gzWarped.nii.gz": f"{subj_id_bids}__FA__affined-mni.nii.gz"}
+    dict_names_correspondance= {"brain_mask_reg_FMRIB58_FA_1mm.nii.gz":f"{subj_id_bids}_space-MNI152FA_brain-mask.nii.gz",
+                                "FA_reg_FMRIB58_FA_1mm.nii.gz0GenericAffine.mat": f"{subj_id_bids}_space-MNI152FA_0GenericAffine.mat",
+                                "Diffusion_b0_brain_mask_reg_FMRIB58_FA_1mm.nii.gz": f"{subj_id_bids}_space-MNI152FA_brain-mask-b0.nii.gz",
+                                "FA_reg_FMRIB58_FA_1mm.nii.gzInverseWarped.nii.gz": f"{subj_id_bids}_space-individual_FA-MNI.nii.gz",
+                                "FA_reg_FMRIB58_FA_1mm.nii.gzWarped.nii.gz": f"{subj_id_bids}_space-MNI152FA_FA.gz"}
 
     #-------------files names equal to APSS_Nilab-------------
 
-    dict_names_correspondance= {"brain_mask_reg_FMRIB58_FA_1mm.nii.gz":f"{subj_id_bids}__brain_mask__affined_binary_mask.nii.gz",
-                                "FA_reg_FMRIB58_FA_1mm.nii.gz0GenericAffine.mat": f"0GenericAffine.mat",
-                                "Diffusion_b0_brain_mask_reg_FMRIB58_FA_1mm.nii.gz": f"{subj_id_bids}__brain_mask_b0__affined_binary_mask.nii.gz",
-                                "FA_reg_FMRIB58_FA_1mm.nii.gzInverseWarped.nii.gz": f"{subj_id_bids}__inv_affined_FA.nii.gz",
-                                "FA_reg_FMRIB58_FA_1mm.nii.gzWarped.nii.gz": f"{subj_id_bids}__affined_FA.nii.gz.nii.gz"}
+    # dict_names_correspondance= {"brain_mask_reg_FMRIB58_FA_1mm.nii.gz":f"{subj_id_bids}__brain_mask__affined_binary_mask.nii.gz",
+    #                             "FA_reg_FMRIB58_FA_1mm.nii.gz0GenericAffine.mat": f"0GenericAffine.mat",
+    #                             "Diffusion_b0_brain_mask_reg_FMRIB58_FA_1mm.nii.gz": f"{subj_id_bids}__brain_mask_b0__affined_binary_mask.nii.gz",
+    #                             "FA_reg_FMRIB58_FA_1mm.nii.gzInverseWarped.nii.gz": f"{subj_id_bids}__inv_affined_FA.nii.gz",
+    #                             "FA_reg_FMRIB58_FA_1mm.nii.gzWarped.nii.gz": f"{subj_id_bids}__affined_FA.nii.gz.nii.gz"}
 
     
     
