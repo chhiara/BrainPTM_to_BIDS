@@ -72,13 +72,13 @@ dict_data_tractog["GeneratedBy"]=[ {
                                       },
                                     
                                     {"Name": "Manual",
-                                    "Description": "ROIs to indentify Corticospinal tract and optic radiation were manually segmented by experts in T1w and DEC images. In particular, for the Optic radiation lateral geniculate nucleus (LGN) of the thalamus and the calcarine sulcus in the occipital lobe were segmented. For the corticospinal tract precentral-gyrus (posterior frontal lobe) and the brain stem were segmented"
+                                    "Description": "ROIs to identify the corticospinal tract and the optic radiation were manually segmented by experts in T1w and DEC images. In particular, for the optic radiation lateral geniculate nucleus (LGN) of the thalamus and the calcarine sulcus in the occipital lobe were segmented. For the corticospinal tract precentral-gyrus (posterior frontal lobe) and the brain stem were segmented"
                                     },
                                     
                                     {
                                       "Name": "ConTrack",
                                       "Version": "",   #!missing!
-                                      "Description": "Probabilistic tractography seeded at specific cortex ROIs, manually segmented. For Optic radiations the ROIs were the lateral geniculate nucleus (LGN) of the thalamus and the calcarine sulcus in the occipital lobe. For the CST the ROIs were precentral-gyrus (posterior frontal lobe) and the brain stem."
+                                      "Description": "Probabilistic tractography seeded at specific cortex ROIs, manually segmented. For optic radiation the ROIs were the lateral geniculate nucleus (LGN) of the thalamus and the calcarine sulcus in the occipital lobe. For the CST the ROIs were precentral-gyrus (posterior frontal lobe) and the brain stem."
                                         }
                                   
                                             ]
@@ -101,7 +101,7 @@ dict_data_bin_bundles["Name"] = "binary masks of bundle-segmentations"
 #the generation is equal to tractograhy files but there is the conversion in binary masks 
 dict_data_bin_bundles["GeneratedBy"].append( {
                                    "Name": "Unknown",    #!missing!
-                                   "Description": "Generated tractography were converted in binary masks, indicating were the bundles pass"
+                                   "Description": "Generated tractography were converted in binary masks, indicating where the bundles pass"
                                      })
                                  
 
