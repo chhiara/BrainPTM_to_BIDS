@@ -25,11 +25,6 @@ tractography_bundle_folder_aff="tractography_with_affine"
 #- the binary files referred to each tract
 bin_mask_bundle_folder="binary_masks"
 
+#- original bvals values are multiplied to 1000 and the bvec are X flipped
+bvec_bval_corrected_folder="bval_bvec_corrected"
 
-#- if this flag is true the data are not only organized in BIDS format, they are also 
-#rearranged to meet common stardards. In particular:
-#    - affine matrix is added to trk tractography files
-#    - original bvals values are multiplied to 1000
-#    - original bvecs are flipped to permit the preprocessing of dwi data with Mrtrix software
-  
-correct_data=True
