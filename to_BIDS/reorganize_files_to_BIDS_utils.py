@@ -25,7 +25,7 @@ sys.path.append(script_dir)
 lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
 sys.path.append(lib_parent_dir)
 
-from config import path_unzipped,path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder
+from config import path_unzipped,path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder, brain_mask_folder
 from utils import sub_id_to_BIDS, run_bash_cmd, get_extension
 
 
@@ -37,6 +37,7 @@ def save_dwi_BIDS(sub_id, sub_id_bids, subj_folder_original):
     in BIDS format. The target directory is indicated by the variable path_bids_data defined in config.py  
     """
     #original paths of the BrainPTM files
+    
     path_dwi_original=f"{subj_folder_original}/Diffusion.nii.gz"
     path_bval_original=f"{subj_folder_original}/Diffusion.bvals"
     path_bvec_original=f"{subj_folder_original}/Diffusion.bvecs"
@@ -47,22 +48,44 @@ def save_dwi_BIDS(sub_id, sub_id_bids, subj_folder_original):
     if not os.path.exists(fold_dwi_bids):
         os.makedirs(fold_dwi_bids)
     
+    #dict mapping from original extension files(keys) to target bids extensions(value)
+    extensions_original_to_bids={".bvals":".bval",
+                                ".bvecs":".bvec",
+                                ".nii.gz":".nii.gz"}
     #copy the files in the new destion respecting the BIDS format
     for path_original_dwi in paths_original_dwi:
         file_ext=get_extension(path_original_dwi)
-        path_to_bids_dwi=f"{fold_dwi_bids}/{sub_id_bids}_dwi{file_ext}"
+        bids_file_ext = extensions_original_to_bids[file_ext]            
+        path_to_bids_dwi=f"{fold_dwi_bids}/{sub_id_bids}_dwi{bids_file_ext}"
         bash_command=f"cp {path_original_dwi}  {path_to_bids_dwi}"
         run_bash_cmd(bash_command)
         
-        
+
+def save_brain_masks_BIDS(sub_id, sub_id_bids, subj_folder_original):
+    """
+    Save the brain mask  of a single case_subject of BrainPRM2021 brain_mask.nii.gz)
+    in derivatives and respecting BIDS format. The target directory is indicated by the variable path_bids_data defined in config.py  
+    """
+    #original paths of the BrainPTM files
+    path_brain_mask_original = f"{subj_folder_original}/brain_mask.nii.gz"  
+
+    #define and create the destination folder to save the files in BIDS
+    fold_bmask_bids=f"{path_bids_data}/derivatives/{brain_mask_folder}/{sub_id_bids}/"
+    if not os.path.exists(fold_bmask_bids):
+        os.makedirs(fold_bmask_bids)
+
+    path_brain_mask_bids= f"{fold_bmask_bids}/{sub_id_bids}_desc-brain-mask_T1w" + get_extension(path_brain_mask_original)
+    bash_command=f"cp {path_brain_mask_original}  {path_brain_mask_bids}"
+
+    run_bash_cmd(bash_command)
+
 def save_anat_BIDS( sub_id, sub_id_bids, subj_folder_original):
     """
-    Save the anat files of a single case_subject of BrainPRM2021 (T1.nii.gz, brain_mask.nii.gz)
-    in BIDS format. The target directory is indicated by the variable path_bids_data defined in config.py  
+    Save the anat files of a single case_subject of BrainPRM2021 T1.nii.gz and the brain_mask.nii.gz)
+    in BIDS format. The target directory is indicated by the variable path_bids_data defined in config.py   
     """
     #original paths of the BrainPTM files
     path_t1_original = f"{subj_folder_original}/T1.nii.gz"
-    path_brain_mask_original = f"{subj_folder_original}/brain_mask.nii.gz"    
     
     #define and create the destination folder to save the files in BIDS
     fold_anat_bids=f"{path_bids_data}/{sub_id_bids}/anat/"
@@ -71,13 +94,11 @@ def save_anat_BIDS( sub_id, sub_id_bids, subj_folder_original):
 
     #copy the files in the new destion respecting the BIDS format
     path_t1_bids= f"{fold_anat_bids}/{sub_id_bids}_T1w" + get_extension(path_t1_original)
-    path_brain_mask_bids= f"{fold_anat_bids}/{sub_id_bids}_brain-mask" + get_extension(path_brain_mask_original)
 
-    bash_commands_anat=[f"cp {path_t1_original}  {path_t1_bids}", 
-                        f"cp {path_brain_mask_original}  {path_brain_mask_bids}"]
-    
-    for bash_command in bash_commands_anat:
-        run_bash_cmd(bash_command)
+    bash_command=f"cp {path_t1_original}  {path_t1_bids}"
+   
+    #for bash_command in bash_commands_anat:
+    run_bash_cmd(bash_command)
 
 
 def save_tractography_BIDS(sub_id, sub_id_bids, subj_folder_original):
@@ -137,9 +158,13 @@ def sub_train_BrainPTM_2_BIDS(sub_id = "case_1"):
 
     save_dwi_BIDS(sub_id, sub_id_bids, fold_dwi_anat_original)
     
-     #---2. rename and save anat files--------------------------------
+    #---2. rename and save anat files--------------------------------
     save_anat_BIDS(sub_id, sub_id_bids, fold_dwi_anat_original)
-            
+
+    #---2.5 save brain mask to derivative
+    save_brain_masks_BIDS(sub_id, sub_id_bids, fold_dwi_anat_original)
+
+
     #---3.rename and save tractography files
     save_tractography_BIDS(sub_id, sub_id_bids, fold_trk_original)
     

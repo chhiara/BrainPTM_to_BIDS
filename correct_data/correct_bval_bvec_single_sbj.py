@@ -24,10 +24,10 @@ from utils import run_bash_cmd, get_extension
 
 
 def correct_bvec(fold_out,bids_subj_id):
-    path_bvec_corrected=f"{fold_out}/{bids_subj_id}_flip-x_dwi.bvecs"
+    path_bvec_corrected=f"{fold_out}/{bids_subj_id}_flip-x_dwi.bvec"
     
     
-    path_bvec = f"{path_bids_data}/{bids_subj_id}/dwi/{bids_subj_id}_dwi.bvecs"
+    path_bvec = f"{path_bids_data}/{bids_subj_id}/dwi/{bids_subj_id}_dwi.bvec"
     
     #NB code to treat cases where there are more lines in bvals... even though
     #there is only one line  
@@ -52,10 +52,10 @@ def correct_bvec(fold_out,bids_subj_id):
 
 def correct_bval(fold_out, bids_subj_id):
     
-    path_bval_corrected=f"{fold_out}/{bids_subj_id}_mult-1000_dwi.bvals"
+    path_bval_corrected=f"{fold_out}/{bids_subj_id}_mult-1000_dwi.bval"
     
     
-    path_bval = f"{path_bids_data}/{bids_subj_id}/dwi/{bids_subj_id}_dwi.bvals"
+    path_bval = f"{path_bids_data}/{bids_subj_id}/dwi/{bids_subj_id}_dwi.bval"
     
     #NB code to treat cases where there are more lines in bvals... even though
     #there is only one line  

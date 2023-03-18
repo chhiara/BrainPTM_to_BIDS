@@ -25,6 +25,9 @@ tractography_bundle_folder_aff="tractography_with_affine"
 #- the binary files referred to each tract
 bin_mask_bundle_folder="binary_masks"
 
+#- the brain masks of T1
+brain_mask_folder="brain_masks"
+
 #- original bvals values are multiplied to 1000 and the bvec are X flipped
 bvec_bval_corrected_folder="bval_bvec_corrected"
 
