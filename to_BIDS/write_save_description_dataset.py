@@ -27,11 +27,12 @@ sys.path.append(script_dir)
 lib_parent_dir = str(Path(script_dir).parent.absolute()) + "/"
 sys.path.append(lib_parent_dir)
 
-from config import path_unzipped,path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder
+from config import path_unzipped,path_bids_data, tractography_bundle_folder, bin_mask_bundle_folder,brain_mask_folder
 #%%
 path_data_description_json=f"{path_bids_data}/dataset_description.json"
 path_data_description_tractogr_json=f"{path_bids_data}/derivatives/{tractography_bundle_folder}/dataset_description.json"
 path_data_description_bin_masks_json=f"{path_bids_data}/derivatives/{bin_mask_bundle_folder}/dataset_description.json"
+path_data_description_brainmasks_json=f"{path_bids_data}/derivatives/{brain_mask_folder}/dataset_description.json"
 
 #----------------------------------------------------------------------
 #----description json of the row data ---------------------------------
@@ -45,9 +46,9 @@ dict_data_row={"Name": "BrainPTM2021",
                         "Noa Barzilay",
                         "Arnaldo Mayer"
                       ],
-                      "Acknowledgements": ["Sheba Medical Center at Tel HaShomer, Israel. CIlab, The Computational Imaging lab"],
+                      "Acknowledgements": "Sheba Medical Center at Tel HaShomer, Israel. CIlab, The Computational Imaging lab",
                       "HowToAcknowledge":"Please cite the papers:  https://doi.org/10.1109/TMI.2019.2954477 and https://doi.org/10.1109/ISBI45749.2020.9098454.",
-                      "SourceDatasets": "https://brainptm-2021.grand-challenge.org/"
+                      "SourceDatasets": [{ "link" : "https://brainptm-2021.grand-challenge.org/"}]
                     }
 
 with open(path_data_description_json, "w") as outfile:
@@ -56,6 +57,25 @@ print(f"saved to file:  {path_data_description_json}")
     
     
     
+#------------------------------------------------------------------------------
+#----descriptive json of the derivative data of the brain masks
+#-------------------------------------------------------------------------------
+dict_data_brain_masks = dict_data_row #base information shared among jsons files
+dict_data_brain_masks["DatasetType"] = "derivative"
+dict_data_brain_masks["Name"] = "brain_masks of the T1w"
+dict_data_brain_masks["GeneratedBy"]=[ {
+                                    "Name": "BET",
+                                    "Version": "",  #!missing!
+                                    "Description": "The T1w images were skull stripped using BET"
+                                      }]
+
+
+with open(path_data_description_brainmasks_json, "w") as outfile:
+    json.dump(dict_data_brain_masks, outfile)
+
+print(f"saved to file:  {path_data_description_brainmasks_json}")
+
+        
 #------------------------------------------------------------------------------
 #----descriptive json of the derivative data of the bundle segmentation's tractography
 #-------------------------------------------------------------------------------

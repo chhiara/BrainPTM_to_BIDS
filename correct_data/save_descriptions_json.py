@@ -46,9 +46,9 @@ dict_data_bvalbvecs={"Name": "bvals and bvecs corrected",
                         "Chiara Riccardi" 
                         
                       ],
-                      "Acknowledgements": ["Sheba Medical Center at Tel HaShomer, Israel. CIlab, The Computational Imaging lab"],
+                      "Acknowledgements": "Sheba Medical Center at Tel HaShomer, Israel. CIlab, The Computational Imaging lab",
                       "HowToAcknowledge":"Please cite the papers:  https://doi.org/10.1109/TMI.2019.2954477 and https://doi.org/10.1109/ISBI45749.2020.9098454.",
-                      "SourceDatasets": "https://brainptm-2021.grand-challenge.org/",
+                      "SourceDatasets": [{ "link" : "https://brainptm-2021.grand-challenge.org/"}],
                       "GeneratedBy": {
                                                           "Name": "Python",
                                                           "Version": "3.9.12", 
@@ -74,9 +74,9 @@ dict_tract_affine={"Name": "bvals and bvecs corrected",
                         "Chiara Riccardi" 
                         
                       ],
-                      "Acknowledgements": ["Sheba Medical Center at Tel HaShomer, Israel. CIlab, The Computational Imaging lab"],
+                      "Acknowledgements": "Sheba Medical Center at Tel HaShomer, Israel. CIlab, The Computational Imaging lab",
                       "HowToAcknowledge":"Please cite the papers:  https://doi.org/10.1109/TMI.2019.2954477 and https://doi.org/10.1109/ISBI45749.2020.9098454.",
-                      "SourceDatasets": "https://brainptm-2021.grand-challenge.org/",
+                      "SourceDatasets": [{ "link" : "https://brainptm-2021.grand-challenge.org/"}],
                       "GeneratedBy": {
                                                           "Name": "Python",
                                                           "Version": "3.9.12", 
