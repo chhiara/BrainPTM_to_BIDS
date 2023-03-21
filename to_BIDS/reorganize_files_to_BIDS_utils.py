@@ -42,6 +42,8 @@ def save_dwi_BIDS(sub_id, sub_id_bids, subj_folder_original):
     path_bval_original=f"{subj_folder_original}/Diffusion.bvals"
     path_bvec_original=f"{subj_folder_original}/Diffusion.bvecs"
     paths_original_dwi= [path_dwi_original, path_bval_original, path_bvec_original]
+    #paths_original_dwi= [ path_bval_original, path_bvec_original]
+    
     
     #define and create the destination folder to save the files in BIDS
     fold_dwi_bids=f"{path_bids_data}/{sub_id_bids}/dwi/"
@@ -186,9 +188,14 @@ def sub_test_BrainPTM_2_BIDS(sub_id = "case_61"):
     
     #---1. rename and move dwi files---------------------------------
     save_dwi_BIDS(sub_id, sub_id_bids, subj_folder_dwi_anat_original)
+
+    
     
      #---2. rename and save anat files--------------------------------
     save_anat_BIDS(sub_id, sub_id_bids, subj_folder_dwi_anat_original)
+
+    #---2.5 save brain mask to derivative
+    save_brain_masks_BIDS(sub_id, sub_id_bids, subj_folder_dwi_anat_original)
             
    
 
