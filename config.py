@@ -12,7 +12,8 @@ path_zipped="/home/chiara/datasets/BrainPTM2021/zip/"
 path_unzipped="/home/chiara/datasets/BrainPTM2021/unzip/"
 
 #path to the dataset created and converted in BIDS format
-path_bids_data = "/home/chiara/datasets/BrainPTM_BIDS/"
+#path_bids_data = "/home/chiara/datasets/BrainPTM_BIDS/"
+path_bids_data = "/home/chiara/datasets/BrainPTM_BIDS_gitannex/BrainPTM_BIDS/"
 
 
 #folders names of the derivatives folders containing:
@@ -26,7 +27,7 @@ tractography_bundle_folder_aff="tractography_with_affine"
 bin_mask_bundle_folder="binary_masks"
 
 #- the brain masks of T1
-brain_mask_folder="brain_masks"
+brain_mask_folder="original_brain_masks"
 
 #- original bvals values are multiplied to 1000 and the bvec are X flipped
 bvec_bval_corrected_folder="bval_bvec_corrected"
