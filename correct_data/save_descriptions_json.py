@@ -53,7 +53,7 @@ dict_data_bvalbvecs={"Name": "bvals and bvecs corrected",
                                                           "Name": "Python",
                                                           "Version": "3.9.12", 
                                                           "Description": "The original bvals were multiplied by 1000 and saved to file; the original bvecs were flipped along the x axis and saved to file" ,
-                                                           "CodeURL":"linktocode" }
+                                                           "CodeURL":"https://github.com/chhiara/BrainPTM_to_BIDS.git" }
                       
                     }
 
@@ -81,7 +81,7 @@ dict_tract_affine={"Name": "bvals and bvecs corrected",
                                                           "Name": "Python",
                                                           "Version": "3.9.12", 
                                                           "Description": "The original trk files had no the correct affine. The affine of the T1w was added to trk files by using nibabel commands" ,
-                                                           "CodeURL":"linktocode" }
+                                                           "CodeURL":"https://github.com/chhiara/BrainPTM_to_BIDS.git" }
                       
                     }
 

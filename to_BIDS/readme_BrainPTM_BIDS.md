@@ -1,7 +1,7 @@
 # README
 
 The BrainPTM2021 dataset is provided by the platform https://grand-challenge.org/ and can be downloaded from https://brainptm-2021.grand-challenge.org/.
-This dataset is not originally in BIDS format. After having downloaded the zip folders from https://brainptm-2021.grand-challenge.org/ can be converted into BIDS format using the code in xxxxxx.
+This dataset is not originally in BIDS format. After having downloaded the zip folders from https://brainptm-2021.grand-challenge.org/ can be converted into BIDS format using the code in https://github.com/chhiara/BrainPTM_to_BIDS.git.
 
 The data are intended to be downloaded to participate in a challenge. 
 The challenge consists in automatically segmenting with the highest performance possible the white matter tracts Corticospinal tract left and right and
@@ -60,7 +60,7 @@ For any questions about the data on the [website](https://brainptm-2021.grand-ch
 
 ### Practical information to access the data
 The data can be downloaded from https://brainptm-2021.grand-challenge.org/, after joining the challenge.
-The zip folders downloaded from https://brainptm-2021.grand-challenge.org/ can be converted in BIDS format using code in xxxx.
+The zip folders downloaded from https://brainptm-2021.grand-challenge.org/ can be converted in BIDS format using code in https://github.com/chhiara/BrainPTM_to_BIDS.git.
 
  
 
